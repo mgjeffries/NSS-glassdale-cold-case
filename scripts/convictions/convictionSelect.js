@@ -28,7 +28,7 @@ export const ConvictionSelect = () => {
                 ${
                     convictionsCollection.map(convictionObj => {
                       return `<option>${convictionObj.name}</option>`
-                    })
+                    }).join("")
                 }
             </select>
         `
