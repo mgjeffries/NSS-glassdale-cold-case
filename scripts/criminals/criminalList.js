@@ -1,6 +1,6 @@
 import { criminalHTML } from './criminalHTMLConverter.js'
 import { getCriminals, useCriminals } from './criminalProvider.js'
-import { getConvictons, useConvictions } from '../convictions/convictionProvider.js'
+import { useConvictions } from '../convictions/convictionProvider.js'
 
 const targetContent = document.querySelector('.criminalsContainer')
 const eventHub = document.querySelector(".container")
@@ -8,36 +8,37 @@ const eventHub = document.querySelector(".container")
 eventHub.addEventListener("convictionChosen", (convictionEvent) => {
   // Get the crime id
   const crimeID = convictionEvent.detail.chosenConviction
-  // Try logging the id to make sure that its working
-  console.log(crimeID)
-
-
-  //Instead, call getconvictions first, and wait for the fetch to return
-  const allConvictions = getConvictons().then( ()=> {
-    const convictionObj = useConvictions().find( 
-      (conviction) => {
-        return conviction.id === parseInt(crimeID)
-        } 
-      )
-    console.log("After waiting for the getConvictions Call, we can access the convictions:", convictionObj.name)
-    
-    }
-    )
+  
+  const convictionObj = useConvictions().find( 
+    (conviction) => {
+      return conviction.id === parseInt(crimeID)
+      } 
+  )
   
   // Get an array of criminals, filtered by crime
-  
+  const filteredCriminals = useCriminals().filter(
+    (criminal) => {
+      return convictionObj.name === criminal.conviction
+    }
+  )
+
   // render the filtered criminals
+  render(filteredCriminals)
+
 })
 
 export const listCriminals = () => {
   getCriminals()
     .then( () => { 
-       
-      let allCriminalHTML = ''
-      useCriminals().forEach(criminalObj => {
-        allCriminalHTML += criminalHTML(criminalObj)
-      })
-
-      targetContent.innerHTML = allCriminalHTML
+       render(useCriminals())
   })
+}
+
+const render = (criminalArray) => {
+  let allCriminalHTML = ''
+  criminalArray.forEach(criminalObj => {
+    allCriminalHTML += criminalHTML(criminalObj)
+  })
+
+  targetContent.innerHTML = allCriminalHTML
 }
