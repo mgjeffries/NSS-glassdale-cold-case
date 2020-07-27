@@ -35,10 +35,6 @@ export const listCriminals = () => {
 }
 
 const render = (criminalArray) => {
-  let allCriminalHTML = ''
-  criminalArray.forEach(criminalObj => {
-    allCriminalHTML += criminalHTML(criminalObj)
-  })
-
-  targetContent.innerHTML = allCriminalHTML
+  
+  targetContent.innerHTML = criminalArray.map( (criminal) => criminalHTML(criminal)).join('')
 }
