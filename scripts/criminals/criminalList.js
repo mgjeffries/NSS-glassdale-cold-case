@@ -9,12 +9,7 @@ eventHub.addEventListener("convictionChosen", (convictionEvent) => {
   // Get the crime id
   const crimeID = convictionEvent.detail.chosenConviction
   // Try logging the id to make sure that its working
-  console.log(crimeID) // ITS WORKING !!!!! ... So Far
-
-
-  // Get the name of the crime, without calling getConvictions - This Should Work, but doesn't
-  const allCrimes = useConvictions()
-  console.log("Should be a list of all crimes, but shows up empty", allCrimes)
+  console.log(crimeID)
 
 
   //Instead, call getconvictions first, and wait for the fetch to return
@@ -25,6 +20,7 @@ eventHub.addEventListener("convictionChosen", (convictionEvent) => {
         } 
       )
     console.log("After waiting for the getConvictions Call, we can access the convictions:", convictionObj.name)
+    
     }
     )
   

@@ -2,7 +2,6 @@ let convictions = []
 
 // export const useConvictions = () => convictions.slice()
 export const useConvictions = () => {
-  console.log('INSIDE useConvictions')
   return convictions.slice()
 }
 
