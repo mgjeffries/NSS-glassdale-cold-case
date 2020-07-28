@@ -21,13 +21,14 @@ export const OfficerSelect = () => {
 
 const render = officersCollection => {
   contentTarget.innerHTML = `
-      <select class="dropdown" id="officerSelect">
-          <option value="0">Please select an officer...</option>
-          ${
-            officersCollection.map(officer => {
-              return `<option value=${officer.id}>${officer.name}</option>`
-            }).join("")
-          }
-      </select>
+    <label for="crimeSelect">Filter Criminals by Arresting Officer</label>
+    <select class="dropdown" id="officerSelect">
+        <option value="0">Please select an officer...</option>
+        ${
+          officersCollection.map(officer => {
+            return `<option value=${officer.id}>${officer.name}</option>`
+          }).join("")
+        }
+    </select>
   `
 }
