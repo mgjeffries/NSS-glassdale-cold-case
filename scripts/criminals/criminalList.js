@@ -1,6 +1,6 @@
-import { criminalHTML } from './criminalHTMLConverter.js'
-import { getCriminals, useCriminals } from './criminalProvider.js'
-import { useConvictions } from '../convictions/convictionProvider.js'
+import { criminalHTML } from './CriminalHTMLConverter.js'
+import { getCriminals, useCriminals } from './CriminalProvider.js'
+import { useConvictions } from '../convictions/ConvictionProvider.js'
 
 const targetContent = document.querySelector('.criminalsContainer')
 const eventHub = document.querySelector(".container")
