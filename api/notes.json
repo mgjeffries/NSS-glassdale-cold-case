@@ -1,11 +1,18 @@
 {
   "notes": [
     {
-    "id": 1,
-    "author": "adam",
-    "unixTime": 1596041663550,
-    "suspect": "bob",
-    "content": "caught picking his nose"
-  }
+      "id": 1,
+      "author": "adam",
+      "unixTime": 1596041663550,
+      "suspect": "bob",
+      "content": "caught picking his nose"
+    },
+    {
+      "author": "",
+      "suspect": "",
+      "unixTime": 1596050446596,
+      "content": "",
+      "id": 2
+    }
   ]
 }
