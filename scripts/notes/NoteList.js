@@ -18,6 +18,9 @@ eventHub.addEventListener("viewNotesEvent", customEvent => {
   if (shouldNotesDisplay) {
     listNotes()
   }
+  else {
+    clearNotes()
+  }
 
 }
 )
@@ -35,4 +38,8 @@ const listNotes = () => {
 
 const render = ( notesHTML ) => {
   contentTarget.innerHTML = notesHTML
+}
+
+const clearNotes = () => {
+  contentTarget.innerHTML = ''
 }
