@@ -3,8 +3,14 @@ import { getNotes, useNotes } from "./NotesDataProvider.js";
 
 
 const contentTarget = document.querySelector(".notesContainer")
+const eventHub = document.querySelector(".container")
 
-export const listNotes = () => {
+eventHub.addEventListener("noteStateChanged", customEvent => {
+  listNotes()
+  }
+)
+
+const listNotes = () => {
   getNotes()
     .then( () => {
       const notesHTML = useNotes().map( (note) => {
