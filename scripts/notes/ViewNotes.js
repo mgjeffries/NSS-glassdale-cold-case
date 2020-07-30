@@ -3,7 +3,6 @@ const eventHub = document.querySelector(".container")
 
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.id === "viewNotes") {
-    console.log('view notes clicked')
     const viewNotesEvent = new CustomEvent("viewNotesEvent", {
       detail: {
         viewNotes: true 

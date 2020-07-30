@@ -1,2 +1,15 @@
 @import "./criminal.css";
 @import "./noteForm.css";
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.mainPage {
+  flex: 4;
+}
+
+.noteAsideContainer {
+  flex: 1;
+}
