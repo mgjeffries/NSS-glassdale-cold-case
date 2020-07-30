@@ -1,0 +1,18 @@
+.noteFormContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 15rem;
+}
+
+#note--content {
+  height: 4rem;
+}
+
+.note.card {
+  width: 10rem;
+  background-color: blanchedalmond;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+} 
