@@ -5,6 +5,7 @@
 
 .criminal.card {
   width: 10rem;
+  background-color: coral;
   border: 2px solid black;
   margin: 5px;
   padding: 5px;

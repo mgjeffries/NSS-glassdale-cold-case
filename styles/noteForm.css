@@ -8,3 +8,11 @@
 #note--content {
   height: 4rem;
 }
+
+.note.card {
+  width: 10rem;
+  background-color: blanchedalmond;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+} 
