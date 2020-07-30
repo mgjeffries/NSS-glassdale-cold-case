@@ -4,10 +4,22 @@ import { getNotes, useNotes } from "./NotesDataProvider.js";
 
 const contentTarget = document.querySelector(".notesContainer")
 const eventHub = document.querySelector(".container")
+let shouldNotesDisplay = false
 
 eventHub.addEventListener("noteStateChanged", customEvent => {
-  listNotes()
+  if (shouldNotesDisplay) {
+    listNotes()
   }
+  }
+)
+
+eventHub.addEventListener("viewNotesEvent", customEvent => {
+  shouldNotesDisplay = customEvent.detail.viewNotes
+  if (shouldNotesDisplay) {
+    listNotes()
+  }
+
+}
 )
 
 const listNotes = () => {
