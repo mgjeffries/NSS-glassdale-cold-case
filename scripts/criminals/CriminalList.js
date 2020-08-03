@@ -53,7 +53,6 @@ eventHub.addEventListener("officerSelected", (officerSelectEvent) => {
 })
 
 eventHub.addEventListener("click", clickEvent => {
-  const buttonElement = document.querySelector(`#${clickEvent.target.id}`)
   const [ clickTarget, criminalID ] = clickEvent.target.id.split("--")
 
   if (clickTarget === "associates-button") {
@@ -64,6 +63,7 @@ eventHub.addEventListener("click", clickEvent => {
     })
     eventHub.dispatchEvent(showAssociate)
     
+    const buttonElement = document.querySelector(`#${clickEvent.target.id}`)
     hideButton(buttonElement)
   }
 })

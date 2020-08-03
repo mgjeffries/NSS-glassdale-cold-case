@@ -1,5 +1,6 @@
 @import "./criminal.css";
 @import "./noteForm.css";
+@import "./associate.css";
 
 .container {
   display: flex;
