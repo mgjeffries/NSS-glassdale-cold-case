@@ -13,4 +13,6 @@
 
 .noteAsideContainer {
   flex: 1;
+  background-color: lightslategray;
+  padding:  0 10px;
 }
