@@ -16,3 +16,16 @@
   background-color: lightslategray;
   padding:  0 10px;
 }
+
+header {
+  display: flex;
+  padding: 3rem;
+}
+.nav {
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #2a9d8f;
+  border: solid black 3px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
