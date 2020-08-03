@@ -28,6 +28,7 @@ eventHub.addEventListener("convictionChosen", (convictionEvent) => {
 
 })
 
+
 eventHub.addEventListener("officerSelected", (officerSelectEvent) => {
   // Get the officer id
   const officerID = officerSelectEvent.detail.officerID
@@ -49,6 +50,18 @@ eventHub.addEventListener("officerSelected", (officerSelectEvent) => {
   // render the filtered criminals
   render(filteredCriminals)
 
+})
+
+eventHub.addEventListener("click", clickEvent => {
+  const [ clickTarget, criminalID ] = clickEvent.target.id.split("--")
+  if (clickTarget === "associates-button") {
+    const showAssociate = new CustomEvent("showAssociate", {
+      detail: {
+        criminalID: criminalID
+      }
+    })
+    eventHub.dispatchEvent(showAssociate)
+  }
 })
 
 export const listCriminals = () => {
