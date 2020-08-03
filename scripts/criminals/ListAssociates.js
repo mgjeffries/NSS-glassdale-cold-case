@@ -1,4 +1,4 @@
-import { AssociateHTML } from "../associates/AssociatesHTMLConverter.js";
+import { AssociateHTML } from "./AssociatesHTMLConverter.js";
 import { useCriminals } from "./CriminalProvider.js";
 
 
