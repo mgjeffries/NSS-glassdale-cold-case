@@ -1,7 +1,11 @@
 @import "./criminal.css";
 @import "./noteForm.css";
 @import "./associate.css";
+@import "./witness.css";
 
+body {
+  margin: 0px;
+}
 .container {
   display: flex;
   flex-wrap: nowrap;
@@ -9,6 +13,8 @@
 
 .mainPage {
   flex: 4;
+  background-color: #f4a261;
+  padding: 10px;
 }
 
 .noteAsideContainer {
@@ -21,6 +27,7 @@ header {
   display: flex;
   padding: 3rem;
 }
+
 .nav {
   padding: 1rem;
   margin: 1rem;
