@@ -53,7 +53,9 @@ eventHub.addEventListener("officerSelected", (officerSelectEvent) => {
 })
 
 eventHub.addEventListener("click", clickEvent => {
+  const buttonElement = document.querySelector(`#${clickEvent.target.id}`)
   const [ clickTarget, criminalID ] = clickEvent.target.id.split("--")
+
   if (clickTarget === "associates-button") {
     const showAssociate = new CustomEvent("showAssociate", {
       detail: {
@@ -61,6 +63,8 @@ eventHub.addEventListener("click", clickEvent => {
       }
     })
     eventHub.dispatchEvent(showAssociate)
+    
+    hideButton(buttonElement)
   }
 })
 
@@ -74,4 +78,8 @@ export const listCriminals = () => {
 const render = (criminalArray) => {
   
   targetContent.innerHTML = criminalArray.map( (criminal) => criminalHTML(criminal)).join('')
+}
+
+const hideButton = (buttonElement) => {
+  buttonElement.style.display = "none"
 }
