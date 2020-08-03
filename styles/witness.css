@@ -1,0 +1,12 @@
+.witnessesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.witness.card {
+  width: 10rem;
+  background-color: #e9c46a;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+} 

@@ -6,6 +6,13 @@ import { useOfficers } from '../officers/OfficerProvider.js'
 const targetContent = document.querySelector('.criminalsContainer')
 const eventHub = document.querySelector(".container")
 
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.className.includes("nav--criminal")) {
+    listCriminals()
+    }
+  }
+)
+
 eventHub.addEventListener("convictionChosen", (convictionEvent) => {
   // Get the crime id
   const crimeID = convictionEvent.detail.chosenConviction

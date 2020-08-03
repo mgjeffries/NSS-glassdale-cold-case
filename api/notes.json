@@ -27,6 +27,13 @@
       "unixTime": 1596472925741,
       "content": "Suspicious Alibi - 'disposing of body bags' - that doesn't sound right.",
       "id": 5
+    },
+    {
+      "author": "Tracer Bullet",
+      "suspect": "Unknown",
+      "unixTime": 1596481037521,
+      "content": "Multiple witnesses report that the suspect was male, drove a large pickup truck, and wore a car dealership hat.",
+      "id": 6
     }
   ]
 }
