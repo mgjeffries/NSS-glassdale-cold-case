@@ -32,13 +32,15 @@ const listNotes = () => {
       const notesCollection = useNotes()
       const criminalsCollection = useCriminals()
 
-      render(notesCollection)
+      render(notesCollection, criminalsCollection)
     })
 }
 
-const render = ( notesCollection ) => {
+const render = ( notesCollection, criminalsCollection ) => {
   const notesHTML = notesCollection.map( (note) => {
-    return noteHTML(note)
+    const relatedCriminal = criminalsCollection.find(criminal => criminal.id === parseInt(note.criminalId))
+    return noteHTML(note, relatedCriminal)
+
   }).join("")
   contentTarget.innerHTML = notesHTML
 }
