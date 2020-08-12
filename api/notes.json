@@ -4,36 +4,15 @@
       "id": 1,
       "author": "adam",
       "unixTime": 1596041663550,
-      "suspect": "bob",
+      "criminalId": "1",
       "content": "caught picking his nose"
     },
     {
       "author": "charlie",
-      "suspect": "david",
+      "criminalId": "2",
       "unixTime": 1596126379655,
       "content": "Smells funny",
       "id": 3
-    },
-    {
-      "author": "edgar",
-      "suspect": "frank",
-      "unixTime": 1596126545366,
-      "content": "J walker. What other crimes might he have committed?",
-      "id": 4
-    },
-    {
-      "author": "Tracer Bullet",
-      "suspect": "Damon Romaguera",
-      "unixTime": 1596472925741,
-      "content": "Suspicious Alibi - 'disposing of body bags' - that doesn't sound right.",
-      "id": 5
-    },
-    {
-      "author": "Tracer Bullet",
-      "suspect": "Unknown",
-      "unixTime": 1596481037521,
-      "content": "Multiple witnesses report that the suspect was male, drove a large pickup truck, and wore a car dealership hat.",
-      "id": 6
     }
   ]
 }
