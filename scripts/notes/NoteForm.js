@@ -1,4 +1,5 @@
 import { saveNote } from "./NotesDataProvider.js";
+import { getCriminals, useCriminals } from "../criminals/CriminalProvider.js";
 
 const contentTarget = document.querySelector(".noteFormContainer")
 const eventHub = document.querySelector(".container")
@@ -7,33 +8,48 @@ const eventHub = document.querySelector(".container")
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.id === "saveNote") {
       const noteAuthor = document.querySelector("#note--author").value
-      const noteSuspect = document.querySelector('#note--suspect').value
+      const criminalId = document.querySelector('#note--criminal-select').value
       const noteContent = document.querySelector('#note--content').value
 
       // Make a new object representation of a note
       const newNote = {
           author: noteAuthor,
-          suspect: noteSuspect,
+          criminalId: criminalId,
           unixTime: Date.now(),
           content: noteContent
       }
 
       // Change API state and application state
       saveNote(newNote)
-      render()
+      const criminals = useCriminals()
+      render(criminals)
   }
 })
 
 export const NoteForm = () => {
-    render()
+    getCriminals()
+      .then( () => {
+        const criminals = useCriminals()
+        render(criminals)
+      })
 }
 
-const render = () => {
+const render = criminals => {
+  const criminalOptions = criminals.map( criminal => {
+    return `
+    <option value="${criminal.id}">
+      ${criminal.name}
+    </option>`
+    }).join("")
+
   contentTarget.innerHTML = `
     <label for="note--author">Note Author</label>
     <input type="text" id="note--author">
     <label for="note--suspect">Note Suspect</label>
-    <input type="text" id="note--suspect">
+    <select class="dropdown" id="note--criminal-select">
+      <option value="0">Select a criminal</option>
+      ${criminalOptions}
+    </select>
     <label for="note--content">Note:</label>
     <input type="text" id="note--content">
     <button id="saveNote">Save Note</button>
