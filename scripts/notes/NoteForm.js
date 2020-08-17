@@ -26,11 +26,26 @@ eventHub.addEventListener("click", clickEvent => {
   }
 })
 
+const listenForSelect = () => {
+  const selectElement = document.querySelector("#note--criminal-select")
+  const saveButton = document.querySelector("#saveNote")
+
+  selectElement.addEventListener("change", changeEvent => {
+    if(selectElement.value === 0 ) {
+      saveButton.classList.add("hidden")    
+    }
+    else {
+      saveButton.classList.remove("hidden")
+    }
+  })
+}
+
 export const NoteForm = () => {
     getCriminals()
       .then( () => {
         const criminals = useCriminals()
         render(criminals)
+        listenForSelect()
       })
 }
 
@@ -52,6 +67,6 @@ const render = criminals => {
     </select>
     <label for="note--content">Note:</label>
     <input type="text" id="note--content">
-    <button id="saveNote">Save Note</button>
+    <button id="saveNote" class="hidden">Save Note</button>
   `
 }
