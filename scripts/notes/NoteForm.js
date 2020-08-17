@@ -7,22 +7,22 @@ const eventHub = document.querySelector(".container")
 // Handle browser-generated click event in component
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.id === "saveNote") {
-      const noteAuthor = document.querySelector("#note--author").value
-      const criminalId = document.querySelector('#note--criminal-select').value
-      const noteContent = document.querySelector('#note--content').value
+    const noteAuthor = document.querySelector("#note--author").value
+    const criminalId = document.querySelector('#note--criminal-select').value
+    const noteContent = document.querySelector('#note--content').value
 
-      // Make a new object representation of a note
-      const newNote = {
-          author: noteAuthor,
-          criminalId: criminalId,
-          unixTime: Date.now(),
-          content: noteContent
-      }
+    // Make a new object representation of a note
+    const newNote = {
+        author: noteAuthor,
+        criminalId: criminalId,
+        unixTime: Date.now(),
+        content: noteContent
+    }
 
-      // Change API state and application state
-      saveNote(newNote)
-      const criminals = useCriminals()
-      render(criminals)
+    // Change API state and application state
+    saveNote(newNote)
+    const criminals = useCriminals()
+    render(criminals)
   }
 })
 
