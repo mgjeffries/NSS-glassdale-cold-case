@@ -16,3 +16,7 @@
   margin: 5px;
   padding: 5px;
 } 
+
+.hidden {
+  visibility: hidden;
+}

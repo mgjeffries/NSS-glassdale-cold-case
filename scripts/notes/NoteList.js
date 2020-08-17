@@ -1,6 +1,6 @@
 import { noteHTML } from "./NoteHTML.js";
 import { getNotes, useNotes } from "./NotesDataProvider.js";
-
+import { getCriminals, useCriminals } from "../criminals/CriminalProvider.js";
 
 const contentTarget = document.querySelector(".notesContainer")
 const eventHub = document.querySelector(".container")
@@ -27,16 +27,21 @@ eventHub.addEventListener("viewNotesEvent", customEvent => {
 
 const listNotes = () => {
   getNotes()
+    .then( getCriminals )
     .then( () => {
-      const notesHTML = useNotes().map( (note) => {
-        return noteHTML(note)
-      }).join("")
+      const notesCollection = useNotes()
+      const criminalsCollection = useCriminals()
 
-      render(notesHTML)
+      render(notesCollection, criminalsCollection)
     })
 }
 
-const render = ( notesHTML ) => {
+const render = ( notesCollection, criminalsCollection ) => {
+  const notesHTML = notesCollection.map( (note) => {
+    const relatedCriminal = criminalsCollection.find(criminal => criminal.id === parseInt(note.criminalId))
+    return noteHTML(note, relatedCriminal)
+
+  }).reverse().join("")
   contentTarget.innerHTML = notesHTML
 }
 
