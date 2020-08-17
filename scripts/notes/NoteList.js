@@ -41,7 +41,7 @@ const render = ( notesCollection, criminalsCollection ) => {
     const relatedCriminal = criminalsCollection.find(criminal => criminal.id === parseInt(note.criminalId))
     return noteHTML(note, relatedCriminal)
 
-  }).join("")
+  }).reverse().join("")
   contentTarget.innerHTML = notesHTML
 }
 
