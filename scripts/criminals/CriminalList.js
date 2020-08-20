@@ -2,9 +2,12 @@ import { criminalHTML } from './CriminalHTMLConverter.js'
 import { getCriminals, useCriminals } from './CriminalProvider.js'
 import { useConvictions } from '../convictions/ConvictionProvider.js'
 import { useOfficers } from '../officers/OfficerProvider.js'
+import { getFacilities, useFacilities } from '../facilities/facilitiesProvider.js'
+import { getIncarcerations, useIncarcerations } from '../incarcerations/incarcerationsProvider.js'
 
 const targetContent = document.querySelector('.criminalsContainer')
 const eventHub = document.querySelector(".container")
+
 
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.className.includes("nav--criminal")) {
@@ -77,6 +80,8 @@ eventHub.addEventListener("click", clickEvent => {
 
 export const listCriminals = () => {
   getCriminals()
+    .then(getFacilities)
+    .then(getIncarcerations)
     .then( () => { 
        render(useCriminals())
   })
@@ -84,7 +89,23 @@ export const listCriminals = () => {
 
 const render = (criminalArray) => {
   
-  targetContent.innerHTML = criminalArray.map( (criminal) => criminalHTML(criminal)).join('')
+  const allIncarcerations = useIncarcerations()
+  const allFacilities = useFacilities()
+
+  const allHTML = criminalArray.map( (criminal) => {
+    const incarcerations = allIncarcerations.filter( incarcerarion => criminal.id === incarcerarion.criminalId)
+
+    const facilities = incarcerations.map( incarceration => {
+      return allFacilities.find( facility => {
+        return facility.id === incarceration.facilityId
+      })
+    })
+
+    return criminalHTML(criminal, facilities)
+  }).join('')
+
+
+  targetContent.innerHTML = allHTML
 }
 
 const hideButton = (buttonElement) => {
