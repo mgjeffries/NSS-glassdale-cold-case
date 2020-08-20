@@ -7,7 +7,11 @@ import { getIncarcerations, useIncarcerations } from '../incarcerations/incarcer
 
 const targetContent = document.querySelector('.criminalsContainer')
 const eventHub = document.querySelector(".container")
-
+let criminals = []
+let selections = {
+  officer: "0",
+  conviction: "0"
+}
 
 eventHub.addEventListener("click", clickEvent => {
   if (clickEvent.target.className.includes("nav--criminal")) {
@@ -17,49 +21,16 @@ eventHub.addEventListener("click", clickEvent => {
 )
 
 eventHub.addEventListener("convictionChosen", (convictionEvent) => {
-  // Get the crime id
-  const crimeID = convictionEvent.detail.chosenConviction
-  
-  const convictionObj = useConvictions().find( 
-    (conviction) => {
-      return conviction.id === parseInt(crimeID)
-      } 
-  )
-  
-  // Get an array of criminals, filtered by crime
-  const filteredCriminals = useCriminals().filter(
-    (criminal) => {
-      return convictionObj.name === criminal.conviction
-    }
-  )
-
-  // render the filtered criminals
-  render(filteredCriminals)
-
+  selections.conviction = convictionEvent.detail.chosenConviction
+  filterCriminals()
+  render()
 })
 
 
 eventHub.addEventListener("officerSelected", (officerSelectEvent) => {
-  // Get the officer id
-  const officerID = officerSelectEvent.detail.officerID
-  
-  // Get the officer name
-  const officerObject = useOfficers().find(
-    (officer) => {
-      return officer.id === parseInt(officerID) 
-    }
-  )
-  
-  // Get an array of criminals, filtered by officer
-  const filteredCriminals = useCriminals().filter(
-    (criminal) => {
-      return officerObject.name === criminal.arrestingOfficer
-    }
-  )
-
-  // render the filtered criminals
-  render(filteredCriminals)
-
+  selections.officer = officerSelectEvent.detail.officerID
+  filterCriminals()
+  render()
 })
 
 eventHub.addEventListener("click", clickEvent => {
@@ -83,16 +54,17 @@ export const listCriminals = () => {
     .then(getFacilities)
     .then(getIncarcerations)
     .then( () => { 
-       render(useCriminals())
+      filterCriminals()
+      render()
   })
 }
 
-const render = (criminalArray) => {
+const render = () => {
   
   const allIncarcerations = useIncarcerations()
   const allFacilities = useFacilities()
 
-  const allHTML = criminalArray.map( (criminal) => {
+  const allHTML = criminals.map( (criminal) => {
     const incarcerations = allIncarcerations.filter( incarcerarion => criminal.id === incarcerarion.criminalId)
 
     const facilities = incarcerations.map( incarceration => {
@@ -110,4 +82,20 @@ const render = (criminalArray) => {
 
 const hideButton = (buttonElement) => {
   buttonElement.style.display = "none"
+}
+
+const filterCriminals = () => {
+  criminals = useCriminals()
+
+  if (selections.conviction !== "0") {
+    const convictionObj = useConvictions().find(conviction => conviction.id === parseInt(selections.conviction))
+
+    criminals = criminals.filter( criminal => convictionObj.name === criminal.conviction )
+  }
+
+  if (selections.officer !== "0") {
+    const officerObject = useOfficers().find( officer => officer.id === parseInt(selections.officer) )
+    
+    criminals = criminals.filter( criminal => officerObject.name === criminal.arrestingOfficer )
+  }
 }
